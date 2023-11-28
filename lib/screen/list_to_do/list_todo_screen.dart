@@ -78,15 +78,19 @@ class _ListTodoScreenState extends State<ListTodoScreen> {
     return  Scaffold(
       floatingActionButton: FloatingActionButton(onPressed: (){
         showCreateTodoDialog();
-      }),
+      },child: Icon(Icons.add),),
       appBar: AppBar(),
-      body: SingleChildScrollView(
-        physics: AlwaysScrollableScrollPhysics(),
-        child: Column(
-          children: [
-            _buildSearchBar(),
-            _buildToDoList()
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: SingleChildScrollView(
+          physics: AlwaysScrollableScrollPhysics(),
+          child: Column(
+            children: [
+              _buildSearchBar(),
+              SizedBox(height: 20,),
+              _buildToDoList()
+            ],
+          ),
         ),
       ),
     );
@@ -95,6 +99,10 @@ class _ListTodoScreenState extends State<ListTodoScreen> {
   Widget _buildSearchBar(){
     return TextField(
       onChanged: searchTodo,
+      decoration: InputDecoration(
+        hintText: "Cari todo",
+        border: OutlineInputBorder()
+      ),
 
     );
   }

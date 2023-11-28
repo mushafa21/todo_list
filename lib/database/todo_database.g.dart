@@ -145,14 +145,15 @@ class _$TodoDao extends TodoDao {
   }
 
   @override
-  Future<List<Todo>> getAllByName(String title) async {
-    return _queryAdapter.queryList('SELECT * FROM Todo WHERE title=?1',
+  Future<List<Todo>> getAllByName(String search) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM Todo WHERE instr(title, ?1) > 0',
         mapper: (Map<String, Object?> row) => Todo(
             id: row['id'] as int?,
             title: row['title'] as String,
             description: row['description'] as String,
             done: (row['done'] as int) != 0),
-        arguments: [title]);
+        arguments: [search]);
   }
 
   @override

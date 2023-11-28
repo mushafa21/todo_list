@@ -9,15 +9,25 @@ class TodoItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  ListTile(
-      title: Text(data.title),
-      subtitle:Text(data.description),
-      leading: IconButton(icon: Icon(data.done ? Icons.check_circle : Icons.circle),onPressed: (){
-        onDelete(data);
-      },),
-      trailing: IconButton(icon: Icon(Icons.delete),onPressed: (){
-        onDelete(data);
-      },),
+    return  Padding(
+      padding: const EdgeInsets.symmetric(vertical: 10),
+      child: ListTile(
+        shape: RoundedRectangleBorder(
+          side: BorderSide(
+            color: Colors.blue,
+            width: 1
+          )
+        ),
+        contentPadding: EdgeInsets.zero,
+        title: Text(data.title),
+        subtitle:Text(data.description),
+        leading: IconButton(icon: Icon(data.done ? Icons.check_circle : Icons.circle),onPressed: (){
+          onUpdate(data);
+        },),
+        trailing: IconButton(icon: Icon(Icons.delete),onPressed: (){
+          onDelete(data);
+        },),
+      ),
     );
   }
 }

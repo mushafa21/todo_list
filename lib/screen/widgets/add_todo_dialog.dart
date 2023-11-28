@@ -11,24 +11,43 @@ class AddTodoDialog extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 200,
+      padding: EdgeInsets.all(16),
+      height: 400,
       child: Column(
+
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Text("Tambah Todo",style: TextStyle(fontSize: 20),),
+          SizedBox(height: 10,),
+
           TextField(
+
             decoration: InputDecoration(
+              hintText: "Masukan judul",
+              labelText: "Judul",
+              border: OutlineInputBorder()
 
             ),
             controller: _titleController,
           ),
+          SizedBox(height: 10,),
+
           TextField(
             decoration: InputDecoration(
+                hintText: "Masukan deskripsi",
+                labelText: "Deskripsi",
+                border: OutlineInputBorder()
+
 
             ),
             controller: _descController,
           ),
-          SizedBox(height: 10,),
+          SizedBox(height: 20,),
           ElevatedButton(onPressed: (){
-            onCreated(Todo(id: null, title: _titleController.text, description: _descController.text, done: false));
+            if(_titleController.text.isNotEmpty && _descController.text.isNotEmpty){
+              Navigator.pop(context);
+              onCreated(Todo(id: null, title: _titleController.text, description: _descController.text, done: false));
+            }
           }, child: Text("Tambah Todo"))
         ],
       ),

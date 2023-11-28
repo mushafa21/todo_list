@@ -11,8 +11,8 @@ abstract class TodoDao{
   @Query('SELECT * FROM Todo')
   Future<List<Todo>> getAll();
 
-  @Query('SELECT * FROM Todo WHERE title=:title')
-  Future<List<Todo>> getAllByName(String title);
+  @Query('SELECT * FROM Todo WHERE instr(title, :search) > 0')
+  Future<List<Todo>> getAllByName(String search);
 
   @Query('DELETE FROM Todo WHERE id=:id')
   Future<void> deleteById(int id);
